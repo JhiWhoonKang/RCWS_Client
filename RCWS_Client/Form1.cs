@@ -76,17 +76,6 @@ namespace RCWS_Client
 
                 while (true)
                 {
-                    //string message = richUdpConnectionStatus.Text;
-                    //byte[] messageData = Encoding.UTF8.GetBytes(message);
-
-                    //udpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                    //udpClient.Send(messageData, messageData.Length, new IPEndPoint(remoteIPAddress, remotePort));
-                    //richUdpConnectionStatus.Text = string.Empty;
-
-                    //byte[] receivedData = udpClient.Receive(ref endPoint);
-                    //string receivedMessage = Encoding.UTF8.GetString(receivedData);
-
-                    //writeUdpRichTextbox(receivedMessage);
 
                     byte[] receivedData = udpClient.Receive(ref endPoint);
                     string receivedMessage = Encoding.UTF8.GetString(receivedData);

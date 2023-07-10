@@ -85,6 +85,10 @@
             this.Controls.Add(this.btnUp);
             this.Name = "MotionControl";
             this.Text = "Form2";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyboard_RCWS_Up);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyboard_RCWS_Down);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyboard_RCWS_Right);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyboard_RCWS_Left);
             this.ResumeLayout(false);
 
         }
