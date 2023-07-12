@@ -33,7 +33,7 @@ namespace RCWS_Client
             thread1.Start();  // thread1 시작.
         }
 
-        private void btnConnectUCP_Click(object sender, EventArgs e)
+        private void btnConnectUDP_Click(object sender, EventArgs e)
         {
             Thread socketThread = new Thread(new ThreadStart(UdpConnect));
             socketThread.IsBackground = true;
@@ -99,6 +99,12 @@ namespace RCWS_Client
         {
             richUdpConnectionStatus.Invoke((MethodInvoker)delegate { richUdpConnectionStatus.AppendText(str + "\r\n"); }); // 데이타를 수신창에 표시, 반드시 invoke 사용. 충돌피함.
             richUdpConnectionStatus.Invoke((MethodInvoker)delegate { richUdpConnectionStatus.ScrollToCaret(); });  // 스크롤을 젤 밑으로.
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Video newVideo = new Video();
+            newVideo.ShowDialog();
         }
     }
 }
