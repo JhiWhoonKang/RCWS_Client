@@ -101,10 +101,16 @@ namespace RCWS_Client
             richUdpConnectionStatus.Invoke((MethodInvoker)delegate { richUdpConnectionStatus.ScrollToCaret(); });  // 스크롤을 젤 밑으로.
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_Video(object sender, EventArgs e)
         {
             Video newVideo = new Video();
             newVideo.ShowDialog();
+        }
+
+        private void button_Control(object sender, EventArgs e)
+        {
+            MotionControl motionControl = new MotionControl(streamWriter);
+            motionControl.ShowDialog();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace RCWS_Client
         private const int Width = 1080;
         private const int Height = 720;
         private const int Port = 9000;
-        private const string ServerIP = "192.168.0.2";
+        private const string ServerIP = "127.0.0.1";
 
         private UdpClient _udpClient;
         private IPEndPoint _endPoint;

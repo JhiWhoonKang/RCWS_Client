@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,89 +14,45 @@ namespace RCWS_Client
 {
     public partial class MotionControl : Form
     {
-        public MotionControl()
+        private StreamWriter streamWriter;
+
+        public MotionControl(StreamWriter streamWriter)
         {
             InitializeComponent();
+            this.streamWriter = streamWriter;
+            this.KeyPress += MotionControl_KeyPress;
         }
 
-        private void btnUp_Click(object sender, EventArgs e)
+        private async void MotionControl_KeyPress(object sender, KeyPressEventArgs e)
         {
+            char direction;
 
-        }
-
-        private void btnRight_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnLeft_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDown_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void keyboard_RCWS_Up(object sender, KeyPressEventArgs e)
-        {
-            MoveUp();
-        }
-
-        private void keyboard_RCWS_Down(object sender, KeyPressEventArgs e)
-        {
-            MoveDown();
-        }
-
-        private void keyboard_RCWS_Right(object sender, KeyPressEventArgs e)
-        {
-            MoveRight();
-        }
-
-        private void keyboard_RCWS_Left(object sender, KeyPressEventArgs e)
-        {
-            MoveLeft();
-        }
-
-        private void MoveUp()
-        {
-            
-        }
-
-        private void MoveRight()
-        {
-            
-        }
-
-        private void MoveLeft()
-        {
-            
-        }
-
-        private void MoveDown()
-        {
-            
-        }
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            switch (keyData)
+            switch (e.KeyChar)
             {
-                case Keys.Left:
-                    MoveLeft();
-                    return true;
-                case Keys.Right:
-                    MoveRight();
-                    return true;
-                case Keys.Up:
-                    MoveUp();
-                    return true;
-                case Keys.Down:
-                    MoveDown();
-                    return true;
+                case 'w':
+                    direction = 'U';
+                    await streamWriter.WriteAsync(direction);
+                    break;
+
+                case 'a':
+                    direction = 'L';
+                    await streamWriter.WriteAsync(direction);
+                    break;
+
+                case 's':
+                    direction = 'D';
+                    await streamWriter.WriteAsync(direction);
+                    break;
+
+                case 'd':
+                    direction = 'R';
+                    await streamWriter.WriteAsync(direction);
+                    break;
+                default:
+                    return;
             }
-            return base.ProcessCmdKey(ref msg, keyData);
+            await streamWriter.WriteAsync(direction + "\n");
+            streamWriter.Flush();
         }
     }
 }
