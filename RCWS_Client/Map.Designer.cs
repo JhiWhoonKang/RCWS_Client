@@ -1,0 +1,74 @@
+﻿namespace RCWS_Client
+{
+    partial class Map
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Map));
+            this.pictureBox_Map = new System.Windows.Forms.PictureBox();
+            this.panel_map = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Map)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // pictureBox_Map
+            // 
+            this.pictureBox_Map.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_Map.Image")));
+            this.pictureBox_Map.InitialImage = null;
+            this.pictureBox_Map.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox_Map.Name = "pictureBox_Map";
+            this.pictureBox_Map.Size = new System.Drawing.Size(776, 392);
+            this.pictureBox_Map.TabIndex = 0;
+            this.pictureBox_Map.TabStop = false;
+            // 
+            // panel_map
+            // 
+            this.panel_map.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel_map.Location = new System.Drawing.Point(12, 410);
+            this.panel_map.Name = "panel_map";
+            this.panel_map.Size = new System.Drawing.Size(776, 28);
+            this.panel_map.TabIndex = 1;
+            // 
+            // Map
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel_map);
+            this.Controls.Add(this.pictureBox_Map);
+            this.Name = "Map";
+            this.Text = "Map";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Map)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.PictureBox pictureBox_Map;
+        private System.Windows.Forms.Panel panel_map;
+    }
+}

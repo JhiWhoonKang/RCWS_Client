@@ -104,13 +104,19 @@ namespace RCWS_Client
         private void button_Video(object sender, EventArgs e)
         {
             Video newVideo = new Video();
-            newVideo.ShowDialog();
+            newVideo.Show();
         }
 
         private void button_Control(object sender, EventArgs e)
         {
             MotionControl motionControl = new MotionControl(streamWriter);
-            motionControl.ShowDialog();
+            motionControl.Show();
+        }
+
+        private void button_Map(object sender, EventArgs e)
+        {
+            Map map= new Map();
+            map.Show();
         }
     }
 }

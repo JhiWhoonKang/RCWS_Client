@@ -44,6 +44,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btn_Video = new System.Windows.Forms.Button();
             this.btn_Control = new System.Windows.Forms.Button();
+            this.btn_Map = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -183,7 +184,7 @@
             // 
             // btn_Control
             // 
-            this.btn_Control.Location = new System.Drawing.Point(147, 546);
+            this.btn_Control.Location = new System.Drawing.Point(119, 546);
             this.btn_Control.Name = "btn_Control";
             this.btn_Control.Size = new System.Drawing.Size(75, 23);
             this.btn_Control.TabIndex = 13;
@@ -191,11 +192,22 @@
             this.btn_Control.UseVisualStyleBackColor = true;
             this.btn_Control.Click += new System.EventHandler(this.button_Control);
             // 
+            // btn_Map
+            // 
+            this.btn_Map.Location = new System.Drawing.Point(212, 546);
+            this.btn_Map.Name = "btn_Map";
+            this.btn_Map.Size = new System.Drawing.Size(75, 23);
+            this.btn_Map.TabIndex = 14;
+            this.btn_Map.Text = "Map";
+            this.btn_Map.UseVisualStyleBackColor = true;
+            this.btn_Map.Click += new System.EventHandler(this.button_Map);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(331, 571);
+            this.Controls.Add(this.btn_Map);
             this.Controls.Add(this.btn_Control);
             this.Controls.Add(this.btn_Video);
             this.Controls.Add(this.groupBox2);
@@ -232,6 +244,7 @@
         private System.Windows.Forms.Button btnConnectUDP;
         private System.Windows.Forms.Button btn_Video;
         private System.Windows.Forms.Button btn_Control;
+        private System.Windows.Forms.Button btn_Map;
     }
 }
 
