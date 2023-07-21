@@ -19,14 +19,13 @@ namespace RCWS_Client
         private bool isDragging = false;
         private int lastX;
         private int lastY;
-
+        
         public Map()
         {
             InitializeComponent();
 
             pictureBox_Map.SizeMode = PictureBoxSizeMode.AutoSize;
-            //img = Image.FromFile(@"C:\JHIWHOON_ws");
-            mapImage = new Bitmap(@"C:\JHIWHOON_ws\demomap.bmp");
+            mapImage = new Bitmap(@"C:\JHIWHOON_ws\2023 Hanium\file photo\demomap.bmp");
             UpdateMapImage();
 
             pictureBox_Map.MouseWheel += MapPictureBox_MouseWheel;
@@ -34,21 +33,18 @@ namespace RCWS_Client
             pictureBox_Map.MouseMove += MapPictureBox_MouseMove;
             pictureBox_Map.MouseUp += MapPictureBox_MouseUp;
         }
+        
 
         private void UpdateMapImage()
         {
             int newWidth = (int)(mapImage.Width * currentScale);
             int newHeight = (int)(mapImage.Height * currentScale);
-            //int newWidth = (int)(img.Width * currentScale);
-            //int newHeight = (int)(img.Height * currentScale);
-
-
             var resizedImage = new Bitmap(newWidth, newHeight);
+
             using (var g = Graphics.FromImage(resizedImage))
             {
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.DrawImage(mapImage, new Rectangle(0, 0, newWidth, newHeight));
-                //g.DrawImage(img, new Rectangle(0, 0, newWidth, newHeight));
             }
 
             pictureBox_Map.Image = resizedImage;
@@ -83,9 +79,10 @@ namespace RCWS_Client
                     int deltaX = e.X - lastX;
                     int deltaY = e.Y - lastY;
 
-                    Point newPosition = new Point(panel_map.AutoScrollPosition.X - deltaX, panel_map.AutoScrollPosition.Y - deltaY);
+                    int map_newX = pictureBox_Map.Location.X + deltaX;
+                    int map_newY = pictureBox_Map.Location.Y + deltaY;
 
-                    panel_map.AutoScrollPosition = newPosition;
+                    pictureBox_Map.Location = new Point(map_newX, map_newY);
 
                     lastX = e.X;
                     lastY = e.Y;
@@ -103,13 +100,6 @@ namespace RCWS_Client
             {
                 isDragging = false;
             }
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            panel_map.AutoScroll = true;
-            panel_map.AutoScrollMinSize = new Size(mapImage.Width, mapImage.Height);
         }
     }
 }
