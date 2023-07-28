@@ -105,12 +105,14 @@
 //}
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
 using OpenCvSharp;
+using System.Linq;
 
 namespace RCWS_Client
 {
@@ -142,12 +144,31 @@ namespace RCWS_Client
             {
                 try
                 {
-                    byte[] imageData = _udpClient.Receive(ref _remoteEndPoint);
+                    List<byte[]> imageParts = new List<byte[]>();
+                    int partsReceived = 0;
 
-                    // 데이터 응답
-                    _udpClient.Send(new byte[] { 1 }, 1, _remoteEndPoint);
+                    while (partsReceived < 4)
+                    {
+                        byte[] imageData = _udpClient.Receive(ref _remoteEndPoint);
 
-                    Mat rawData = new Mat(1, imageData.Length, MatType.CV_8UC3, imageData);
+                        byte ack = (byte)(partsReceived + 0x30);
+                        _udpClient.Send(new byte[] { ack }, 1, _remoteEndPoint);
+
+                        imageParts.Add(imageData);
+                        partsReceived++;
+                    }
+
+                    int totalBytes = imageParts.Sum(part => part.Length);
+                    byte[] mergedImageData = new byte[totalBytes];
+                    int offset = 0;
+
+                    foreach (byte[] part in imageParts)
+                    {
+                        Buffer.BlockCopy(part, 0, mergedImageData, offset, part.Length);
+                        offset += part.Length;
+                    }
+
+                    Mat rawData = new Mat(1, mergedImageData.Length, MatType.CV_8UC3, mergedImageData);
                     var image = Cv2.ImDecode(rawData, ImreadModes.Color);
 
                     pictureBox_Display.Image = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(image);

@@ -39,7 +39,7 @@
             this.pictureBox_Map.InitialImage = null;
             this.pictureBox_Map.Location = new System.Drawing.Point(12, 12);
             this.pictureBox_Map.Name = "pictureBox_Map";
-            this.pictureBox_Map.Size = new System.Drawing.Size(776, 426);
+            this.pictureBox_Map.Size = new System.Drawing.Size(1206, 697);
             this.pictureBox_Map.TabIndex = 0;
             this.pictureBox_Map.TabStop = false;
             // 
@@ -47,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1230, 721);
             this.Controls.Add(this.pictureBox_Map);
             this.Name = "Map";
             this.Text = "Map";

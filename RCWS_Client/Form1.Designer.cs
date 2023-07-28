@@ -135,6 +135,7 @@
             // 
             // btnConnectUDP
             // 
+            this.btnConnectUDP.ForeColor = System.Drawing.Color.Black;
             this.btnConnectUDP.Location = new System.Drawing.Point(15, 63);
             this.btnConnectUDP.Name = "btnConnectUDP";
             this.btnConnectUDP.Size = new System.Drawing.Size(218, 60);

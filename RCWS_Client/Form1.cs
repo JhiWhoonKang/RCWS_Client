@@ -68,19 +68,32 @@ namespace RCWS_Client
                 writeUdpRichTextbox("통신 시도 중...");
 
                 int remotePort = int.Parse(textBox_UDPPort.Text);
-                IPAddress remoteIPAddress = IPAddress.Parse(textBox_UDPIP.Text);
+                IPAddress remoteIPAddress;
 
-                udpClient = new UdpClient();
-                endPoint = new IPEndPoint(remoteIPAddress, remotePort);
-                writeUdpRichTextbox("통신 성공");
+                udpClient =new UdpClient(); //udpClinet 객체 생성
+                endPoint = new IPEndPoint(IPAddress.Any, 0);
 
+                bool isConnected = false;
+                IPEndPoint clientEndPoint = new IPEndPoint(IPAddress.Parse(textBox_UDPIP.Text), int.Parse(textBox_UDPPort.Text));
+                bool isClientEndpointReceived = false;
+
+                byte[] receivedData;
+                string receivedMessage;
+
+                // 서버 연결 확인을 위한 메시지 보내기
+                byte[] connectMessage = Encoding.UTF8.GetBytes("서버 연결 확인");
+                udpClient.Send(connectMessage, connectMessage.Length, clientEndPoint);
+
+                // 서버 연결 확인 대기
                 while (true)
                 {
-
-                    byte[] receivedData = udpClient.Receive(ref endPoint);
-                    string receivedMessage = Encoding.UTF8.GetString(receivedData);
-
-                    writeUdpRichTextbox(receivedMessage);
+                    receivedData = udpClient.Receive(ref endPoint);
+                    receivedMessage = Encoding.UTF8.GetString(receivedData);
+                    if (receivedMessage == "서버 연결")
+                    {
+                        writeUdpRichTextbox("통신 성공");
+                        break;
+                    }
                 }
             }
             catch (Exception ex)
